@@ -1,26 +1,46 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --primary-1: #ffffff;
+  --text-1: #fafafa;
+  --text-2: #000;
+  --button-card: #000;
+  --second-1: #fefaf1;
+  --second-2: #f5f5f5;
+  --button-1: #0f6;
+  --button-2: #db4444;
+  --button-hover: #e07575;
 }
+
+/* TODO */
+/* Zasad ovo komentiram jer zelim raditi sa light modom dok radim  */
+/* Kasnije otkomentirati i vidit kako izgleda na dark modu */
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --primary-1: #363738;
+    --text-2: #000;
+    --second-2: #db4444;
+    --button-hover: #a0bce0;
+  }
+} */
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-primary-1: var(--primary-1);
+  --color-text-1: var(--text-1);
+  --color-text-2: var(--text-2);
+  --color-button-card: var(--button-card);
+  --color-second-1: var(--second-1);
+  --color-second-2: var(--second-2);
+  --color-button-1: var(--button-1);
+  --color-button-2: var(--button-2);
+  --color-button-hover: var(--button-hover);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-poppins: var(--font-poppins);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--primary-1);
+  color: var(--text-2);
+
+  font-family: var(--font-poppins), Helvetica, sans-serif;
 }
