@@ -11,13 +11,8 @@ export default function Login() {
       <h4 className="text-base mb-8">Enter your details below</h4>
 
       <Form action="" className="grid justify-items-start gap-y-8">
-        <Input name="email" label="Email" placeholder="Email" required />
-        <Input
-          name="password"
-          label="Password"
-          placeholder="Password"
-          required
-        />
+        <Input name="email" label="Email" placeholder="Email" />
+        <Input name="password" label="Password" placeholder="Password" />
 
         <div className="flex flex-col sm:flex-row justify-between w-full gap-4 sm:gap-0">
           <Button text="Log In" variant="primary" type="submit" />

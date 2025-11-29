@@ -7,6 +7,7 @@ interface ButtonProps {
   variant: ButtonVariant;
   type: ButtonType;
   className?: string;
+  disabled?: boolean;
 }
 
 const baseButtonClasses = "cursor-pointer text-base";
@@ -24,11 +25,13 @@ export default function Button({
   variant,
   type,
   className,
+  disabled,
 }: ButtonProps) {
   return (
     <button
       className={`${className} ${baseButtonClasses} ${variantClasses[variant]} `}
-      type={type}>
+      type={type}
+      disabled={disabled}>
       {text}
     </button>
   );

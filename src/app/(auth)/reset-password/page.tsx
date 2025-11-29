@@ -13,7 +13,7 @@ export default function ResetPassword() {
       </h4>
 
       <Form action="" className="grid justify-items-start gap-y-8">
-        <Input name="email" label="Email" placeholder="Email" required />
+        <Input name="email" label="Email" placeholder="Email" />
 
         <Button
           text="Send reset link"

@@ -1,16 +1,13 @@
+import FormError from "./FormError";
+
 interface InputProps {
   name: string;
   label?: string;
   placeholder?: string;
-  required?: boolean;
+  error?: string;
 }
 
-export default function Input({
-  name,
-  label,
-  placeholder,
-  required,
-}: InputProps) {
+export default function Input({ name, label, placeholder, error }: InputProps) {
   return (
     <div className="w-full">
       {label ? (
@@ -20,9 +17,10 @@ export default function Input({
       <input
         name={name}
         placeholder={placeholder}
-        required={required}
-        className="px-4 py-3 text-base bg-second-2 rounded-sm w-full"
+        className="px-4 py-3 text-base bg-second-2 rounded-sm w-full mb-1"
       />
+
+      <FormError error={error} />
     </div>
   );
 }
