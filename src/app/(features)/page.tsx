@@ -1,12 +1,9 @@
-import CategoriesNavbar from "@/_components/CategoriesNavbar";
-import ProductCard from "@/_components/ProductCard";
+import Hero from "@/_components/Hero";
 
 export default function Home() {
   return (
     <div>
-      <h1 className="mb-10">Home page</h1>
-
-      <CategoriesNavbar />
+      <Hero />
 
       {/* <ProductCard />
       <ProductCard />

@@ -7,7 +7,13 @@ import { useMemo, useState } from "react";
 
 const flattenCategories = flatMapObjectArray(Categories);
 
-export default function CategoriesNavbar() {
+interface CategoriesNavbarProps {
+  additionalClassName?: string;
+}
+
+export default function CategoriesNavbar({
+  additionalClassName,
+}: CategoriesNavbarProps) {
   const [parentId, setParentId] = useState<number | null>(null);
 
   const [history, setHistory] = useState<(number | null)[]>([]);
@@ -42,7 +48,7 @@ export default function CategoriesNavbar() {
   };
 
   return (
-    <div>
+    <div className={additionalClassName || ""}>
       {parentId ? (
         <div className="mb-2 cursor-pointer" onClick={handleBackButtonClick}>
           Back
@@ -52,7 +58,7 @@ export default function CategoriesNavbar() {
       {categories.map((category) => (
         <div
           key={category.id}
-          className="flex items-center cursor-pointer"
+          className="flex items-center cursor-pointer mb-4"
           onClick={() => handleCategoryClick(category)}>
           <div>{category.label}</div>
 
