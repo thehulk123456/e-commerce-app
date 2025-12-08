@@ -6,9 +6,9 @@ export default function FeaturesLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div>
+    <>
       <Header />
-      {children}
-    </div>
+      <div className="max-w-[1200px] mx-auto">{children}</div>
+    </>
   );
 }
