@@ -3,7 +3,11 @@
 import { useState } from "react";
 import StarRating from "./StarRating";
 
-export default function ProductCard() {
+interface ProductCardProps {
+  title: string;
+}
+
+export default function ProductCard({ title }: ProductCardProps) {
   const [hover, setHover] = useState(false);
 
   const navigateToProduct = (id: string) => {
@@ -34,7 +38,7 @@ export default function ProductCard() {
             </button>
           ) : null}
         </div>
-        <div className="mb-2 font-medium">HAVIT HV-G92 Gamepad</div>
+        <div className="mb-2 font-medium">{title}</div>
       </div>
 
       <div className="flex gap-3 items-center mb-2 ">

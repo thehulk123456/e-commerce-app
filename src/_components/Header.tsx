@@ -1,7 +1,7 @@
+import CartIcon from "@/_icons/CartIcon";
 import HeartIcon from "@/_icons/HeartIcon";
 import Navigation from "./Navigation";
 import Search from "./Search";
-import CartIcon from "@/_icons/CartIcon";
 
 export default function Header() {
   return (

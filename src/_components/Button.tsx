@@ -10,7 +10,7 @@ interface ButtonProps {
   disabled?: boolean;
 }
 
-const baseButtonClasses = "cursor-pointer text-base";
+const baseButtonClasses = "cursor-pointer text-base block";
 
 //TODO Add tertiary button if needed and adjust styling if needed
 const variantClasses: Record<ButtonVariant, string> = {
