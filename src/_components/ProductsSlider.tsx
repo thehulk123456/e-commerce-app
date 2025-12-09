@@ -33,8 +33,6 @@ export default function ProductSlider({ className }: ProductSliderProps) {
 
     const { scrollLeft } = slider.current;
 
-    console.log("SCROLL LEFT", scrollLeft);
-
     slider.current.scrollTo({
       left: scrollLeft + slideBy,
       behavior: "smooth",
