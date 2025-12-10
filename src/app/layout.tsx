@@ -1,3 +1,4 @@
+import Footer from "@/_components/Footer";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
@@ -29,6 +30,8 @@ export default function FeaturesLayout({
         }}
         className={`${poppins.variable}  antialiased`}>
         <main>{children}</main>
+
+        <Footer />
       </body>
     </html>
   );
