@@ -1,5 +1,5 @@
-import CategoryCard from "./CategoryCard";
-import SectionHeader from "./SectionHeader";
+import CategoryCard from "../../../_components/CategoryCard";
+import SectionHeader from "../../../_components/SectionHeader";
 
 interface CategoriesSectionProps {
   className?: string;
@@ -9,10 +9,10 @@ export default function CategoriesSection({
   className,
 }: CategoriesSectionProps) {
   return (
-    <div className={className ?? ""}>
+    <section className={className ?? ""}>
       <SectionHeader
-        title="Categories"
-        sectionTitle="Browse By Category"
+        sectionTitle="Categories"
+        title="Browse By Category"
         className="mb-10"
       />
 
@@ -23,12 +23,7 @@ export default function CategoriesSection({
         <CategoryCard />
         <CategoryCard />
         <CategoryCard />
-        <CategoryCard />
-        <CategoryCard />
-        <CategoryCard />
-        <CategoryCard />
-        <CategoryCard />
       </div>
-    </div>
+    </section>
   );
 }

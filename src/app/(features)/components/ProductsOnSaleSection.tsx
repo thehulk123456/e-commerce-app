@@ -1,12 +1,12 @@
 "use client";
 
-import Button from "./Button";
-import ProductSlider from "./ProductsSlider";
-import SectionHeader from "./SectionHeader";
+import Button from "../../../_components/Button";
+import ProductSlider from "../../../_components/ProductsSlider";
+import SectionHeader from "../../../_components/SectionHeader";
 
 export default function ProductsOnSaleSection() {
   return (
-    <div>
+    <section>
       <SectionHeader
         title="Flash sales"
         sectionTitle="Today's"
@@ -22,6 +22,6 @@ export default function ProductsOnSaleSection() {
         variant="primary"
         className="mx-auto"
       />
-    </div>
+    </section>
   );
 }
