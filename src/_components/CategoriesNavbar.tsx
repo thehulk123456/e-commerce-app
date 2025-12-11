@@ -1,17 +1,17 @@
 "use client";
 
-import { Categories, Category } from "@/_const/categories";
+import { Category } from "@/_const/categories";
 import DropdownIcon from "@/_icons/DropdownIcon";
-import { flatMapObjectArray, getItemsPerParent } from "@/_utils/helper-object";
+import { getItemsPerParent } from "@/_utils/helper-object";
 import { useMemo, useState } from "react";
 
-const flattenCategories = flatMapObjectArray(Categories);
-
 interface CategoriesNavbarProps {
+  categoriesData: Category[];
   additionalClassName?: string;
 }
 
 export default function CategoriesNavbar({
+  categoriesData,
   additionalClassName,
 }: CategoriesNavbarProps) {
   const [parentId, setParentId] = useState<number | null>(null);
@@ -19,8 +19,8 @@ export default function CategoriesNavbar({
   const [history, setHistory] = useState<(number | null)[]>([]);
 
   const categories = useMemo(
-    () => getItemsPerParent(parentId, flattenCategories),
-    [parentId]
+    () => getItemsPerParent(parentId, categoriesData),
+    [parentId, categoriesData]
   );
 
   const handleCategoryClick = (category: Category) => {
@@ -29,7 +29,7 @@ export default function CategoriesNavbar({
       console.log("navigate to page");
     } else {
       setHistory((prev) => [...prev, parentId]);
-      setParentId(category.id);
+      setParentId(category.categoryId);
     }
 
     console.log("category", category);
@@ -57,10 +57,10 @@ export default function CategoriesNavbar({
 
       {categories.map((category) => (
         <div
-          key={category.id}
+          key={category.categoryId}
           className="flex items-center cursor-pointer mb-4"
           onClick={() => handleCategoryClick(category)}>
-          <div>{category.label}</div>
+          <div>{category.name}</div>
 
           {!category.isLeaf ? <DropdownIcon /> : null}
         </div>
