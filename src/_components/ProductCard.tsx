@@ -1,13 +1,15 @@
 "use client";
 
+import { Product } from "@/_types/products";
+import { getFormattedPrice } from "@/_utils/currency";
 import { useState } from "react";
 import StarRating from "./StarRating";
 
 interface ProductCardProps {
-  title: string;
+  product: Product;
 }
 
-export default function ProductCard({ title }: ProductCardProps) {
+export default function ProductCard({ product }: ProductCardProps) {
   const [hover, setHover] = useState(false);
 
   const navigateToProduct = (id: string) => {
@@ -38,12 +40,19 @@ export default function ProductCard({ title }: ProductCardProps) {
             </button>
           ) : null}
         </div>
-        <div className="mb-2 font-medium">{title}</div>
+        <div className="mb-2 font-medium">{product.name}</div>
       </div>
 
       <div className="flex gap-3 items-center mb-2 ">
-        <div className="font-medium text-button-2">$120</div>
-        <div className="font-medium opacity-50 line-through">$160</div>
+        {product.onSale && product.price_sale ? (
+          <div className="font-medium text-button-2">
+            {getFormattedPrice(product.price_sale)}
+          </div>
+        ) : null}
+
+        <div className="font-medium opacity-50 line-through">
+          {getFormattedPrice(product.priceRegular)}
+        </div>
       </div>
 
       <StarRating rating={1} showNumberOfReviews={false} />

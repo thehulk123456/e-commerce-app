@@ -1,7 +1,7 @@
 "use client";
 
-import { Category } from "@/_const/categories";
 import DropdownIcon from "@/_icons/DropdownIcon";
+import { Category } from "@/_types/categories";
 import { getItemsPerParent } from "@/_utils/helper-object";
 import { useMemo, useState } from "react";
 

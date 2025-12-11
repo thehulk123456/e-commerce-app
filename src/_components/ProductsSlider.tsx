@@ -2,10 +2,13 @@
 
 import ArrowLeftIcon from "@/_icons/ArrowLeftIcon";
 import ArrowRightIcon from "@/_icons/ArrowRightIcon";
+import { Product } from "@/_types/products";
 import { useRef } from "react";
+import Button from "./Button";
 import ProductCard from "./ProductCard";
 
 interface ProductSliderProps {
+  products: Product[];
   className?: string;
 }
 
@@ -14,7 +17,10 @@ const slideBy = 400;
 const arrowContainerClasses =
   "flex items-center bg-second-2 w-11 h-11 rounded-full justify-center cursor-pointer";
 
-export default function ProductSlider({ className }: ProductSliderProps) {
+export default function ProductSlider({
+  className,
+  products,
+}: ProductSliderProps) {
   const slider = useRef<HTMLDivElement>(null);
 
   const goLeft = () => {
@@ -40,31 +46,28 @@ export default function ProductSlider({ className }: ProductSliderProps) {
   };
 
   return (
-    <div className={`relative ${className ?? ""}`}>
-      <div ref={slider} className="flex gap-10 w-full overflow-hidden mb-1">
-        <ProductCard title="Aurora Lamp" />
-        <ProductCard title="Nova Headphones" />
-        <ProductCard title="Pulse Smartwatch" />
-        <ProductCard title="Zen Desk Chair" />
-        <ProductCard title="Orbit Blender" />
-        <ProductCard title="Echo Wireless Speaker" />
-        <ProductCard title="Luna Coffee Maker" />
-        <ProductCard title="Vertex Backpack" />
-        <ProductCard title="Aether Laptop Stand" />
-        <ProductCard title="Comet Gaming Mouse" />
-        <ProductCard title="Nimbus Air Purifier" />
-        <ProductCard title="Halo LED Strip" />
-        <ProductCard title="Drift Travel Mug" />
-        <ProductCard title="Solace Weighted Blanket" />
-      </div>
+    <div className={className ?? ""}>
+      <div className="relative">
+        <div ref={slider} className="flex gap-10 w-full overflow-hidden mb-12">
+          {products.map((product) => (
+            <ProductCard product={product} key={product.productId} />
+          ))}
+        </div>
 
-      <div className={`${arrowContainerClasses} absolute -left-14 top-26`}>
-        <ArrowLeftIcon onClick={goLeft} />
-      </div>
+        <div className={`${arrowContainerClasses} absolute -left-14 top-26`}>
+          <ArrowLeftIcon onClick={goLeft} />
+        </div>
 
-      <div className={`${arrowContainerClasses} absolute -right-14 top-26`}>
-        <ArrowRightIcon onClick={goRight} />
+        <div className={`${arrowContainerClasses} absolute -right-14 top-26`}>
+          <ArrowRightIcon onClick={goRight} />
+        </div>
       </div>
+      <Button
+        text="View All Products"
+        type="button"
+        variant="primary"
+        className="mx-auto"
+      />
     </div>
   );
 }

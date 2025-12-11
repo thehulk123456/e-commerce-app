@@ -1,10 +1,10 @@
 "use client";
 
-import Button from "../../../_components/Button";
 import ProductSlider from "../../../_components/ProductsSlider";
 import SectionHeader from "../../../_components/SectionHeader";
 
 export default function BestSellingProductsSection() {
+  //get best selling products from orders table by count somehow and pass it to products slider
   return (
     <section>
       <SectionHeader
@@ -13,14 +13,7 @@ export default function BestSellingProductsSection() {
         className="mb-10"
       />
 
-      <ProductSlider className="mb-[60px]" />
-
-      <Button
-        text="View All"
-        type="button"
-        variant="primary"
-        className="mx-auto"
-      />
+      <ProductSlider className="mb-[60px]" products={[]} />
     </section>
   );
 }

@@ -1,10 +1,24 @@
-"use client";
-
-import Button from "../../../_components/Button";
+import { getConnection } from "@/_utils/db";
 import ProductSlider from "../../../_components/ProductsSlider";
 import SectionHeader from "../../../_components/SectionHeader";
 
-export default function ProductsOnSaleSection() {
+async function getProductsOnSale() {
+  try {
+    const connection = await getConnection();
+
+    const [rows] = (await connection.execute(
+      "SELECT * FROM products WHERE onSale = true LIMIT 20"
+    )) as any[];
+
+    return rows;
+  } catch (e) {
+    return [];
+  }
+}
+
+export default async function ProductsOnSaleSection() {
+  const productsOnSale = await getProductsOnSale();
+
   return (
     <section>
       <SectionHeader
@@ -14,14 +28,7 @@ export default function ProductsOnSaleSection() {
         saleEndDate={new Date("2025-12-12")}
       />
 
-      <ProductSlider className="mb-[60px]" />
-
-      <Button
-        text="View All Products"
-        type="button"
-        variant="primary"
-        className="mx-auto"
-      />
+      <ProductSlider className="mb-[60px]" products={productsOnSale} />
     </section>
   );
 }
