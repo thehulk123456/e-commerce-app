@@ -43,7 +43,7 @@ export async function loginUser(prevState: any, formData: FormData) {
       return errors;
     }
 
-    const passwordHash = rows[0].password_hash;
+    const passwordHash = rows[0].passwordHash;
 
     const userId = rows[0].userId;
     const email = rows[0].email;
