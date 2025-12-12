@@ -1,11 +1,11 @@
 "use client";
 
 import Button from "@/_components/Button";
+import FormError from "@/_components/FormError";
 import Input from "@/_components/Input";
 import Form from "next/form";
-import { LoginErrors, loginUser } from "./actions";
 import { useActionState } from "react";
-import FormError from "@/_components/FormError";
+import { LoginErrors, loginUser } from "./actions";
 
 export default function Login() {
   const initialState: LoginErrors = {};
@@ -31,6 +31,7 @@ export default function Login() {
           name="password"
           label="Password"
           placeholder="Password"
+          type="password"
           error={state?.password}
         />
 
