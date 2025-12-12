@@ -1,5 +1,3 @@
-"use client";
-
 import { logout } from "@/_actions/logout";
 import CartIcon from "@/_icons/CartIcon";
 import HeartIcon from "@/_icons/HeartIcon";
@@ -16,13 +14,11 @@ export default function Header() {
         <HeartIcon className="cursor-pointer" />
         <CartIcon className="cursor-pointer" />
 
-        <button
-          className="cursor-pointer block"
-          onClick={async () => {
-            await logout();
-          }}>
-          Log out
-        </button>
+        <form action={logout}>
+          <button type="submit" className="cursor-pointer block">
+            Log out
+          </button>
+        </form>
       </div>
     </header>
   );
