@@ -34,7 +34,7 @@ export async function loginUser(prevState: any, formData: FormData) {
     const connection = await getConnection();
 
     const [rows] = (await connection.execute(
-      "SELECT username,user_id,email, password_hash FROM users WHERE username = ?",
+      "SELECT username,userId,email, passwordHash FROM users WHERE username = ?",
       [username]
     )) as any[];
 
@@ -45,7 +45,7 @@ export async function loginUser(prevState: any, formData: FormData) {
 
     const passwordHash = rows[0].password_hash;
 
-    const userId = rows[0].user_id;
+    const userId = rows[0].userId;
     const email = rows[0].email;
 
     const isPasswordMatch = await bcrypt.compare(

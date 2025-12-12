@@ -2,8 +2,8 @@
 
 import bcrypt from "bcrypt";
 
-import { passwordRegex } from "@/_utils/regex";
 import { getConnection } from "@/_utils/db";
+import { passwordRegex } from "@/_utils/regex";
 import { redirect } from "next/navigation";
 
 export interface SignUpErrors {
@@ -66,7 +66,7 @@ export async function registerUser(prevState: any, formData: FormData) {
     }
 
     await connection.execute(
-      "INSERT INTO users (username, email, password_hash) VALUES (?, ?, ?)",
+      "INSERT INTO users (username, email, passwordHash) VALUES (?, ?, ?)",
       [username, email, passwordHash]
     );
   } catch (e) {

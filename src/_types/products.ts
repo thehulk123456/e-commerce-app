@@ -3,9 +3,9 @@ export interface Product {
   name: string;
   description: string;
   priceRegular: number;
-  price_sale: number | null;
+  priceSale: number | null;
   onSale: boolean;
   categoryId: number;
-  created_at: Date;
-  updated_at: Date;
+  createdAt: Date;
+  updatedAt: Date;
 }

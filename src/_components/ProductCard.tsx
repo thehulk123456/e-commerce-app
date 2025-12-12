@@ -44,9 +44,9 @@ export default function ProductCard({ product }: ProductCardProps) {
       </div>
 
       <div className="flex gap-3 items-center mb-2 ">
-        {product.onSale && product.price_sale ? (
+        {product.onSale && product.priceSale ? (
           <div className="font-medium text-button-2">
-            {getFormattedPrice(product.price_sale)}
+            {getFormattedPrice(product.priceSale)}
           </div>
         ) : null}
 
