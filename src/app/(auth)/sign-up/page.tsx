@@ -3,8 +3,8 @@
 import Button from "@/_components/Button";
 import Input from "@/_components/Input";
 import Form from "next/form";
-import { registerUser, SignUpErrors } from "./actions";
 import { useActionState } from "react";
+import { registerUser, SignUpErrors } from "./actions";
 
 export default function SignUp() {
   const initialState: SignUpErrors = {};
@@ -38,6 +38,7 @@ export default function SignUp() {
           name="password"
           label="Password"
           placeholder="Password"
+          type="password"
           error={state?.password}
         />
 
