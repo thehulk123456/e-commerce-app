@@ -2,7 +2,7 @@ import { logout } from "@/_actions/logout";
 import CartIcon from "@/_icons/CartIcon";
 import HeartIcon from "@/_icons/HeartIcon";
 import Navigation from "./Navigation";
-import Search from "./Search";
+import SearchProducts from "./SearchProducts";
 
 export default function Header() {
   return (
@@ -10,7 +10,7 @@ export default function Header() {
       <h1 className="font-bold text-2xl">Exclusive</h1>
       <Navigation />
       <div className="flex items-center gap-4">
-        <Search />
+        <SearchProducts />
         <HeartIcon className="cursor-pointer" />
         <CartIcon className="cursor-pointer" />
 
