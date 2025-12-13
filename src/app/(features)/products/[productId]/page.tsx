@@ -24,7 +24,7 @@ export default async function ProductDetailsPage({
   const product = rows[0] as Product;
 
   return (
-    <div className="py-20">
+    <div className="py-20 flex justify-center">
       <ProductDetails product={product} />
     </div>
   );
