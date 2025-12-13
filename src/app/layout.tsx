@@ -27,6 +27,7 @@ export default function FeaturesLayout({
         style={{
           display: "grid",
           height: "100vh",
+          gridTemplateRows: "1fr auto",
         }}
         className={`${poppins.variable}  antialiased`}>
         <main>{children}</main>

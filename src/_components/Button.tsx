@@ -29,7 +29,7 @@ export default function Button({
 }: ButtonProps) {
   return (
     <button
-      className={`${className} ${baseButtonClasses} ${variantClasses[variant]} `}
+      className={`${baseButtonClasses} ${variantClasses[variant]} ${className}`}
       type={type}
       disabled={disabled}>
       {text}

@@ -10,6 +10,7 @@
   --button-1: #0f6;
   --button-2: #db4444;
   --button-hover: #e07575;
+  --border: rgba(0, 0, 0, 0.5);
 }
 
 /* TODO */
@@ -34,6 +35,7 @@
   --color-button-1: var(--button-1);
   --color-button-2: var(--button-2);
   --color-button-hover: var(--button-hover);
+  --color-border: var(--border);
 
   --font-poppins: var(--font-poppins);
 }
