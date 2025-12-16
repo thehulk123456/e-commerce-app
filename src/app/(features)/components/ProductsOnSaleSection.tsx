@@ -20,7 +20,7 @@ export default async function ProductsOnSaleSection() {
   const productsOnSale = await getProductsOnSale();
 
   return (
-    <section>
+    <section className="flex flex-col items-center lg:items-start">
       <SectionHeader
         title="Flash sales"
         sectionTitle="Today's"

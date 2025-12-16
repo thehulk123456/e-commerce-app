@@ -46,19 +46,22 @@ export default function ProductSlider({
   };
 
   return (
-    <div className={className ?? ""}>
-      <div className="relative">
-        <div ref={slider} className="flex gap-10 w-full overflow-hidden mb-12">
+    <div
+      className={`${
+        className ?? ""
+      } w-[270px] md:w-[600px] lg:w-[900px] xl:w-full relative`}>
+      <div>
+        <div ref={slider} className="flex gap-10 overflow-hidden mb-12">
           {products.map((product) => (
             <ProductCard product={product} key={product.productId} />
           ))}
         </div>
 
-        <div className={`${arrowContainerClasses} absolute -left-14 top-26`}>
+        <div className={`${arrowContainerClasses} absolute -left-16 top-26`}>
           <ArrowLeftIcon onClick={goLeft} />
         </div>
 
-        <div className={`${arrowContainerClasses} absolute -right-14 top-26`}>
+        <div className={`${arrowContainerClasses} absolute -right-16 top-26`}>
           <ArrowRightIcon onClick={goRight} />
         </div>
       </div>

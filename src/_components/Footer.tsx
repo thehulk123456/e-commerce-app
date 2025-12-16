@@ -6,7 +6,7 @@ export default function Footer() {
 
   return (
     <footer className="bg-text-2">
-      <div className="text-text-1 pt-20 pb-14 flex justify-between max-w-[1200px] mx-auto">
+      <div className="text-text-1 pt-20 px-8 pb-14 flex flex-col gap-4 xl:flex-row xl:gap-0 justify-between max-w-[1200px] mx-auto">
         <div>
           <div className="font-bold text-2xl mb-6">Exlusive</div>
           <div className="text-xl mb-6">Subscribe</div>
@@ -16,7 +16,7 @@ export default function Footer() {
 
           <input
             placeholder="Enter your email"
-            className="px-4 py-3 text-base rounded-sm w-full mb-1 border-[1.5px] border-text-1"
+            className="px-4 py-3 text-base rounded-sm w-1/2 xl:w-full mb-1 border-[1.5px] border-text-1"
           />
         </div>
 

@@ -13,7 +13,7 @@ export default function HeroSlider() {
   };
 
   return (
-    <div className="w-[892px] h-[344px] pt-10 relative">
+    <div className="w-[892px] h-[344px] pt-10 relative hidden xl:block">
       <Image
         src="/iphone-featured.png"
         width={892}

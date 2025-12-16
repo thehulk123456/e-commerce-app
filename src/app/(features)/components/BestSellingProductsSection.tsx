@@ -22,7 +22,7 @@ export default async function BestSellingProductsSection() {
   const bestSellingProducts = await getProductsOnSale();
 
   return (
-    <section>
+    <section className="flex flex-col items-center lg:items-start">
       <SectionHeader
         title="Best Selling Products"
         sectionTitle="This month"

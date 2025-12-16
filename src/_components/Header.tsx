@@ -6,10 +6,10 @@ import SearchProducts from "./SearchProducts";
 
 export default function Header() {
   return (
-    <header className="flex justify-between px-32 py-10 border-b border-b-[rgba(0,0,0,0.3)]">
+    <header className="flex flex-col gap-4 items-center xl:flex-row xl:gap-0 justify-between px-32 py-10 border-b border-b-[rgba(0,0,0,0.3)]">
       <h1 className="font-bold text-2xl">Exclusive</h1>
       <Navigation />
-      <div className="flex items-center gap-4">
+      <div className="flex flex-col md:flex-row items-center gap-4">
         <SearchProducts />
         <HeartIcon className="cursor-pointer" />
         <CartIcon className="cursor-pointer" />
