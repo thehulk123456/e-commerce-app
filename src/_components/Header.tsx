@@ -1,7 +1,7 @@
 import { logout } from "@/_actions/logout";
-import CartIcon from "@/_icons/CartIcon";
 import HeartIcon from "@/_icons/HeartIcon";
 import Link from "next/link";
+import CartWithQuantity from "./CartWithQuantity";
 import Navigation from "./Navigation";
 import SearchProducts from "./SearchProducts";
 
@@ -15,7 +15,7 @@ export default function Header() {
       <div className="flex flex-col md:flex-row items-center gap-4">
         <SearchProducts />
         <HeartIcon className="cursor-pointer" />
-        <CartIcon className="cursor-pointer" />
+        <CartWithQuantity />
 
         <form action={logout}>
           <button type="submit" className="cursor-pointer block">

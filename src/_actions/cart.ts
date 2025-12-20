@@ -1,14 +1,9 @@
 "use server";
 
+import { UserJWTTokenPayload } from "@/_types/jwt";
 import { getConnection } from "@/_utils/db";
 import jwt from "jsonwebtoken";
 import { cookies } from "next/headers";
-
-interface JwtPayload {
-  username: string;
-  userId: number;
-  email: string;
-}
 
 export async function addProductToCart(productId: number, delta: number) {
   if (!Number.isInteger(delta) || delta === 0) return;
@@ -18,7 +13,7 @@ export async function addProductToCart(productId: number, delta: number) {
   const token = cookieStore.get("token")?.value;
 
   if (token) {
-    const { userId } = jwt.decode(token) as JwtPayload;
+    const { userId } = jwt.decode(token) as UserJWTTokenPayload;
 
     const connection = await getConnection();
 

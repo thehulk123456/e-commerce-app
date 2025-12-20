@@ -1,6 +1,7 @@
 "use client";
 
 import { addProductToCart } from "@/_actions/cart";
+import { useCart } from "@/_hooks/useCart";
 import { Product } from "@/_types/products";
 import { getFormattedPrice } from "@/_utils/currency";
 import { useRouter } from "next/navigation";
@@ -16,6 +17,8 @@ export default function ProductCard({ product }: ProductCardProps) {
 
   const [addToCartDisabled, setAddToCartDisabled] = useState(false);
 
+  const { setProductQuantity } = useCart();
+
   const router = useRouter();
 
   const navigateToProduct = () => {
@@ -29,6 +32,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 
     try {
       await addProductToCart(product.productId, 1);
+      setProductQuantity((quantity: number) => quantity + 1);
     } finally {
       setAddToCartDisabled(false);
     }
