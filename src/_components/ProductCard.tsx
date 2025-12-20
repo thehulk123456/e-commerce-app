@@ -1,7 +1,9 @@
 "use client";
 
+import { addProductToCart } from "@/_actions/cart";
 import { Product } from "@/_types/products";
 import { getFormattedPrice } from "@/_utils/currency";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import StarRating from "./StarRating";
 
@@ -12,18 +14,31 @@ interface ProductCardProps {
 export default function ProductCard({ product }: ProductCardProps) {
   const [hover, setHover] = useState(false);
 
-  const navigateToProduct = (id: string) => {
-    console.log("navigate to product with id");
+  const [addToCartDisabled, setAddToCartDisabled] = useState(false);
+
+  const router = useRouter();
+
+  const navigateToProduct = () => {
+    router.push(`/products/${product.productId}`);
   };
 
-  // TODO
-  // Add product interface and then navigateToProduct calls real product id and navigates to it
+  const addToCart = async () => {
+    if (addToCartDisabled) return;
+
+    setAddToCartDisabled(true);
+
+    try {
+      await addProductToCart(product.productId, 1);
+    } finally {
+      setAddToCartDisabled(false);
+    }
+  };
+
   return (
     <div>
-      <div
-        className="cursor-pointer"
-        onClick={() => navigateToProduct("213213")}>
+      <div className="cursor-pointer">
         <div
+          onClick={() => navigateToProduct()}
           className="flex justify-center items-center w-[270px] h-[250px] bg-second-2 rounded-sm mb-4 relative "
           onMouseEnter={() => setHover(true)}
           onMouseLeave={() => setHover(false)}>
@@ -35,7 +50,13 @@ export default function ProductCard({ product }: ProductCardProps) {
           />
 
           {hover ? (
-            <button className="w-full bg-text-2 text-primary-1 text-center py-2 absolute bottom-0">
+            <button
+              disabled={addToCartDisabled}
+              className="w-full bg-text-2 text-primary-1 text-center py-2 absolute bottom-0 cursor-pointer"
+              onClick={(e) => {
+                e.stopPropagation();
+                addToCart();
+              }}>
               Add to cart
             </button>
           ) : null}

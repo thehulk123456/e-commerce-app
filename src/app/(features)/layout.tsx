@@ -1,3 +1,4 @@
+import Footer from "@/_components/Footer";
 import Header from "@/_components/Header";
 
 export default function FeaturesLayout({
@@ -9,6 +10,7 @@ export default function FeaturesLayout({
     <>
       <Header />
       <div className="max-w-[1200px] mx-auto">{children}</div>
+      <Footer />
     </>
   );
 }
