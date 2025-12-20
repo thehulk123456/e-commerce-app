@@ -2,6 +2,8 @@
 
 import { addProductToCart } from "@/_actions/cart";
 import { useCart } from "@/_hooks/useCart";
+import { useFavorites } from "@/_hooks/useFavorites";
+import HeartIcon from "@/_icons/HeartIcon";
 import { Product } from "@/_types/products";
 import { getFormattedPrice } from "@/_utils/currency";
 import { useRouter } from "next/navigation";
@@ -18,6 +20,8 @@ export default function ProductCard({ product }: ProductCardProps) {
   const [addToCartDisabled, setAddToCartDisabled] = useState(false);
 
   const { setProductQuantity } = useCart();
+
+  const { favoriteProducts, toggleFavoriteProduct } = useFavorites();
 
   const router = useRouter();
 
@@ -36,6 +40,14 @@ export default function ProductCard({ product }: ProductCardProps) {
     } finally {
       setAddToCartDisabled(false);
     }
+  };
+
+  const isProductInFavorites = () => {
+    const isProductInFavorites = favoriteProducts.find(
+      (favoriteProduct) => favoriteProduct.productId === product.productId
+    );
+
+    return isProductInFavorites;
   };
 
   return (
@@ -64,6 +76,15 @@ export default function ProductCard({ product }: ProductCardProps) {
               Add to cart
             </button>
           ) : null}
+
+          <button
+            className="w-9 h-9 flex justify-center items-center rounded-full bg-primary-1 text-primary-1 text-center py-2 absolute top-2 right-2 cursor-pointer"
+            onClick={(e) => {
+              e.stopPropagation();
+              toggleFavoriteProduct(product);
+            }}>
+            <HeartIcon fill={isProductInFavorites() ? "#db4444" : "none"} />
+          </button>
         </div>
         <div className="mb-2 font-medium">{product.name}</div>
       </div>
