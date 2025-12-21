@@ -86,6 +86,10 @@ export default function Cart() {
     return getFormattedPrice(totalPrice);
   };
 
+  if (!cartItems.length) {
+    return <div className="py-10">Your cart is empty!</div>;
+  }
+
   return (
     <div className="w-full py-10">
       <div className={cartRowClasses}>
