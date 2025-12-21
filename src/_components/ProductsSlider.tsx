@@ -10,6 +10,8 @@ import ProductCard from "./ProductCard";
 interface ProductSliderProps {
   products: Product[];
   className?: string;
+  showViewAllProducts?: boolean;
+  viewAllProductsHref?: string;
 }
 
 const slideBy = 400;
@@ -20,6 +22,8 @@ const arrowContainerClasses =
 export default function ProductSlider({
   className,
   products,
+  showViewAllProducts = true,
+  viewAllProductsHref,
 }: ProductSliderProps) {
   const slider = useRef<HTMLDivElement>(null);
 
@@ -65,12 +69,14 @@ export default function ProductSlider({
           <ArrowRightIcon onClick={goRight} />
         </div>
       </div>
-      <Button
-        text="View All Products"
-        type="button"
-        variant="primary"
-        className="mx-auto"
-      />
+      {showViewAllProducts ? (
+        <Button
+          text="View All Products"
+          type="button"
+          variant="primary"
+          className="mx-auto"
+        />
+      ) : null}
     </div>
   );
 }

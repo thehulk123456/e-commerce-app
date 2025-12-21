@@ -15,7 +15,7 @@ export async function GET(request: NextRequest) {
     const connection = await getConnection();
 
     const [rows] = (await connection.execute(
-      "   SELECT * FROM userFavorites WHERE userId = ?",
+      "SELECT * FROM userFavorites WHERE userId = ?",
       [userId]
     )) as any[];
 
