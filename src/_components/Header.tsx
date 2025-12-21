@@ -14,7 +14,9 @@ export default function Header() {
       <Navigation />
       <div className="flex flex-col md:flex-row items-center gap-4">
         <SearchProducts />
-        <HeartIcon className="cursor-pointer" />
+        <Link href="/favorites" className="cursor-pointer">
+          <HeartIcon />
+        </Link>
         <CartWithQuantity />
 
         <form action={logout}>

@@ -9,14 +9,19 @@ export default function FeaturesLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <>
+    <div
+      className="h-full"
+      style={{
+        display: "grid",
+        gridTemplateRows: "auto 1fr auto",
+      }}>
       <FavoriteProductsProvider>
         <CartProvider>
           <Header />
-          <div className="max-w-[1200px] mx-auto">{children}</div>
+          <div className="w-full max-w-[1200px] mx-auto">{children}</div>
           <Footer />
         </CartProvider>
       </FavoriteProductsProvider>
-    </>
+    </div>
   );
 }

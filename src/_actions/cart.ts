@@ -6,40 +6,51 @@ import jwt from "jsonwebtoken";
 import { cookies } from "next/headers";
 
 export async function addProductToCart(productId: number, delta: number) {
-  if (!Number.isInteger(delta) || delta === 0) return;
+  if (!Number.isInteger(delta) || delta === 0) return null;
 
   const cookieStore = await cookies();
 
   const token = cookieStore.get("token")?.value;
+  if (!token) return null;
 
-  if (token) {
-    const { userId } = jwt.decode(token) as UserJWTTokenPayload;
+  const payload = jwt.decode(token) as UserJWTTokenPayload | null;
+  if (!payload?.userId) return null;
 
-    const connection = await getConnection();
+  const { userId } = payload;
 
-    await connection.execute("INSERT IGNORE INTO carts (userId) VALUES (?)", [
-      userId,
-    ]);
+  const connection = await getConnection();
 
-    const [rows] = (await connection.execute(
-      "   SELECT cartId FROM carts WHERE userId = ?",
-      [userId]
-    )) as any[];
+  await connection.execute("INSERT IGNORE INTO carts (userId) VALUES (?)", [
+    userId,
+  ]);
 
-    const cartId = rows[0].cartId;
+  const [cartRows] = (await connection.execute(
+    "SELECT cartId FROM carts WHERE userId = ?",
+    [userId]
+  )) as any;
 
-    await connection.execute(
-      `
-            INSERT INTO cartItems (cartId,productId,quantity)
-            VALUES (?,?,GREATEST(?,0))
-            ON DUPLICATE KEY UPDATE quantity = quantity + VALUES(quantity)
-        `,
-      [cartId, productId, delta]
-    );
+  const cartId = cartRows?.[0]?.cartId;
+  if (!cartId) return null;
 
-    await connection.execute(
-      `DELETE FROM cartItems WHERE cartId = ? AND productId = ? AND quantity <= 0`,
-      [cartId, productId]
-    );
-  }
+  await connection.execute(
+    `
+    INSERT INTO cartItems (cartId, productId, quantity)
+    VALUES (?, ?, ?)
+    ON DUPLICATE KEY UPDATE
+      quantity = GREATEST(quantity + VALUES(quantity), 0)
+    `,
+    [cartId, productId, delta]
+  );
+
+  await connection.execute(
+    `DELETE FROM cartItems WHERE cartId = ? AND productId = ? AND quantity < 1`,
+    [cartId, productId]
+  );
+
+  const [itemRows] = (await connection.execute(
+    `SELECT quantity FROM cartItems WHERE cartId = ? AND productId = ?`,
+    [cartId, productId]
+  )) as any;
+
+  return itemRows?.[0]?.quantity ?? 0;
 }
